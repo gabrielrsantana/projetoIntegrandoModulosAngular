@@ -1,5 +1,7 @@
 --Gabriel Rocha 08/10/2021
-como juntar varios modulos distintos numa mesma Aplicação
+como juntar varios modulos distintos numa mesma Aplicação.nesse exemplo, vai ser
+anexado os projetos feito durante o curso angular da SoulCode ( calculadora, Jogo
+da velha, Conversor de moedas, gerenciador de tarefas)
 -dentro da pasta de angular:
 ng new  projetofinal
 
