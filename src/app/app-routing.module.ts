@@ -1,12 +1,13 @@
+// esse arquivo tem a função de importar as rotas dos modulos criados em outros projetos
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 // ### importa automaticamente quando coloca os ...xxxRouter
-//Se nao importa tem que acrescenter manualmente
+//Se nao importar tem que acrescenter manualmente o caminho
 import { CalculadoraRoutes } from "./calculadora/calculadora-routing.module";
 import { ConversorRoutes } from "./conversor/conversor-routing.module";
 import { DashboardRoutes } from "./dashboard/dashboard-routing.module";
 import { JogoDaVelhaRoutes } from "./jogo-da-velha/jogodavelha-routing.module";
-import { TarefaRoutes } from "./tarefas";
+import { TarefaRoutes } from "./tarefas"; //importa todas as rotas do modulo TerefasRoutes
 
 //faz export pra ficar disponivel pro modulo principal
 export const routes = [

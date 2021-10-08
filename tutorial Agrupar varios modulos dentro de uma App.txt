@@ -1,3 +1,4 @@
+--Gabriel Rocha 08/10/2021
 como juntar varios modulos distintos numa mesma Aplicação
 -dentro da pasta de angular:
 ng new  projetofinal
