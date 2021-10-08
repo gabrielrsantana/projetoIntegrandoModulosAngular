@@ -9,9 +9,9 @@ import { DashboardRoutes } from "./dashboard/dashboard-routing.module";
 import { JogoDaVelhaRoutes } from "./jogo-da-velha/jogodavelha-routing.module";
 import { TarefaRoutes } from "./tarefas"; //importa todas as rotas do modulo TerefasRoutes
 
-//faz export pra ficar disponivel pro modulo principal
+//faz export das rotas pra ficar disponivel pro modulo principal
 export const routes = [
-    {
+    {    //o path vazio significa que é a raiz do projeto,e é redirecionado para o dashboard
         path: '',
         //ja inicia com projeto do dashboard
         redirectTo: '/dashboard',

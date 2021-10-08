@@ -1,7 +1,10 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
+    <!-- nesse arquivo fica o Menu principal que direciona para os links dos outros projetos ,
+    usando [routerLink] -->
     <!-- suporte a mobile -->
     <div class="navbar-header">
+      <!-- botao icone sandwich,pra tela celular -->
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Visualizar itens</span>
         <span class="icon-bar"></span>
@@ -10,10 +13,11 @@
       </button>
       <a class="navbar-brand" href="#">Projeto final</a>
     </div>
-
+    <!-- navbar -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="#">Inicial</a></li>
+        <!-- inicio do dropdown com os projetos -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             Projetos <span class="caret"></span>
@@ -51,6 +55,8 @@
             </li>
           </ul>
         </li>
+        <!-- fim dropdown -->
+        
       </ul>
     </div>
   </div>
