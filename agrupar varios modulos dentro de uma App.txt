@@ -1,0 +1,195 @@
+como juntar varios modulos distintos numa mesma Aplicação
+-dentro da pasta de angular:
+ng new  projetofinal
+
+-entra na pasta projetofinal
+-coloca strict 'false'no tsconfig.json e apaaga os testes,e 
+-instala o rxjs-compat pra o Observer
+npm install rxjs-compat --save
+
+-instalar o jquery e bootstrap
+npm install bootstrap@3 --save
+npm install jquery --save
+
+-coloca os caminhos do bostrap e jquery ( pra usaar o modal)no arquivo angular.json:
+----------------------------
+   "styles": [
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+
+
+
+-----------------------------
+- reinicia o servidor com o comando,pois alterou o arquivo anfular.json
+ng serve
+
+-pega o link externo do dashboard e jogo da velha e coloca no 
+<head> do index.html do projetofinal
+
+<link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+-criar no app o arquivo :
+app-routing.module.ts
+
+-faz  os imports no arquivo app-routing.module.ts:
+import { NgModule } from "@angular/core";
+import { Routes,RouterModule } from "@angular/router";
+//faz export pra ficar disponivel pro modulo principal
+export const routes = [
+    {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+    }
+
+];
+//ngmodule é o que diz se e decorador ou nao
+@NgModule({
+    imports:[
+        //forRoot(routers) garante que e modulo unico da aplicacao
+        RouterModule.forRoot(routes)
+    ],
+    exports:[RouterModule ]
+})
+
+export class AppRoutingModule{}
+
+- informa no app.module que esse modulo acima existe
+import { AppRoutingModule } from './app-routing.module';
+
+ imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+
+- vai na pasta do projeto de app>SRC> dashboard em app e copia pasta dashboard ( modulo)
+e cola no projetofinal>app  e cola a pasta dashboard
+
+-vai no app.module.ts e informa o novo modulo:
+import { DashboardModule } from './dashboard';
+
+  imports: [
+    BrowserModule,
+    DashboardModule,
+    //approutingmodule sempre fica por ultimo,todos os modulos precisam ser reconhecidos antes os outros modulos importados
+    AppRoutingModule
+  ],
+
+-cria o dashboard-routing.module.ts dentro da pasta dashboard
+e coloca o componente tambem.
+e importa as rotas
+import { Routes } from "@angular/router";
+import { DashboardComponent } from "./dashboard.component";
+
+-faz mesmo processo anterior daas rotas
+import { Routes } from "@angular/router";
+import { DashboardComponent } from "./dashboard.component";
+
+export const DashboardRoutes: Routes = [
+    {
+        path:'dashboard',
+        component:DashboardComponent
+    }
+];
+
+-copia o codigo menu.html enviado pela professora e 
+-vai no arquivo app.component.html e coloca o html do menu
+em cima do seletor <app-outlet>
+------------------------------------------------------------
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <!-- suporte a mobile -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Visualizar itens</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Projeto final</a>
+      </div>
+  
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="#">Inicial</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Projetos <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a>
+                  Dashboard
+                </a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a>
+                  Calculadora
+                </a>
+              </li>
+              <li>
+                <a>
+                  Conversor de moedas
+                </a>
+              </li>
+              <li>
+                <a>
+                  Gerenciador de tarefas
+                </a>
+              </li>
+              <li>
+                <a>
+                  Jogo da velha
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <router-outlet></router-outlet>
+  </div>
+<div class="container-fluid">
+<!-- essa tag router-outler diz que o conteudo vem atraves de rotas -->
+  <router-outlet></router-outlet>
+</div>
+
+----------------------------------------------------------
+-ir no app.component.html e nos links e colocar os [routerLink]:
+ <a [routerLink]="['/dashboard']">
+                Dashboard
+   </a>
+----FIm----------
+
+-fazer mesmo processo com a calculadora,conversor,gerenciador de tarefas,jogo da velha.
+OBS, no do gerenciador de tarefas, ja existe um arquivo de rotas feito no projeto no dia,
+entao só faz referenciar nos modulos.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

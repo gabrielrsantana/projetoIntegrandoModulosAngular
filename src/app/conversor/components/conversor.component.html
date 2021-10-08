@@ -1,0 +1,40 @@
+<br />
+<div class="alert alert-danger" role="alert" *ngIf="possuiErro">
+	Erro obtendo dados. Tente novamente.
+</div>
+<div class="panel panel-success">
+	<div class="panel-heading">
+		Selecione a moeda a ser convertida
+	</div>
+	<div class="panel-body text-center">
+		<!-- cria variavel #conversaoForm de acordo com ngForm,nesse caso usa o form todo-->
+		<form #conversaoForm="ngForm" class="form-inline">
+			<!-- input do valor q ser convertido -->
+			<!-- 'numero' é pra diretiva criado depois ,para usuario digitar letras ao invez de numeros-->
+			<input numero type="text" name="valor" class="form-control text-right" placeholder="0"
+				[(ngModel)]="conversao.valor" required>
+			<!-- select encherga moeda de -->
+			<select name="moedaDe" [(ngModel)]="conversao.moedaDe" class="form-control" required>
+				<option *ngFor="let moeda of moedas" [value]="moeda.sigla">{{moeda.sigla}} - {{moeda.descricao}}
+
+				</option>
+			</select>
+			<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+			<!-- moeda para -->
+			<select name="moedaPara" class="form-control" [(ngModel)]="conversao.moedaPara" required>
+				<option *ngFor="let moeda of moedas" [value]="moeda.sigla">
+					{{moeda.sigla}} - {{moeda.descricao}}
+				</option>
+			</select>
+			<input type="submit" value="Converter" class="btn btn-success" data-toggle="modal"
+				data-target="#modalCotacao" (click)="converter()" [disabled]="!conversaoForm.form.valid">
+		</form>
+	</div>
+	<!-- ######### modal criado na pasta utils #####################-->
+	<!-- ############ chama aqui o componente modal  #############-->
+	<modal-cotacao [id]="'modalCotacao'" [conversaoResponse]="conversaoResponse" [conversao]="conversao"
+		(onConfirm)="init()">
+
+	</modal-cotacao>
+	<!-- ########## FIM MODAL RESULTADO ############ -->
+</div>
